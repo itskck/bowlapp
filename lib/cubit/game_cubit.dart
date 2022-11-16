@@ -54,7 +54,6 @@ class GameCubit extends Cubit<GameState> {
           if (rounds[i + 1].isStrike) {
             newRounds[i].additionalPoints =
                 rounds[i + 1].firstShot + rounds[i + 2].firstShot;
-            print('this');
           } else {
             newRounds[i].additionalPoints =
                 rounds[i + 1].firstShot + rounds[i + 2].secondShot!;
