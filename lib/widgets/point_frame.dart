@@ -1,9 +1,11 @@
+import 'package:bowlapp/models/round.dart';
 import 'package:flutter/material.dart';
 
 class PointFrame extends StatelessWidget {
-  const PointFrame({super.key});
+  const PointFrame({super.key, required this.round});
 
-  static const double width = 30;
+  static const double width = 40;
+  final Round round;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,13 @@ class PointFrame extends StatelessWidget {
               width: width,
               decoration: BoxDecoration(border: Border.all()),
               padding: EdgeInsets.all(10),
-              child: Text('5'),
+              child: Text(round.firstShot.toString()),
             ),
             Container(
               width: width,
               decoration: BoxDecoration(border: Border.all()),
               padding: EdgeInsets.all(10),
-              child: Text('5'),
+              child: Text(round.secondShot.toString()),
             )
           ],
         ),
@@ -31,7 +33,7 @@ class PointFrame extends StatelessWidget {
           width: 2 * width,
           decoration: BoxDecoration(border: Border.all()),
           padding: EdgeInsets.all(10),
-          child: Text('5'),
+          child: Text(round.sum.toString()),
         )
       ],
     );
