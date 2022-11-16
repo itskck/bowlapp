@@ -16,34 +16,14 @@ class GameCubit extends Cubit<GameState> {
 
     var current = (state as GameInProgress).currentRound;
 
-    switch (current) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-      case 5:
-        break;
-      case 6:
-        break;
-      case 7:
-        break;
-      case 8:
-        break;
-      case 9:
-        break;
-      case 10:
-        break;
-    }
-
     rounds[current] = round1;
     current = current + 1;
 
-    emit(GameInProgress(
-        currentRound: current, rounds: checkAdditionalPoints(rounds)));
+    final newRounds = checkAdditionalPoints(rounds);
+
+    emit(GameInProgress(currentRound: current, rounds: newRounds));
+
+    print(newRounds);
   }
 
   List<Round> checkAdditionalPoints(List<Round> rounds) {
@@ -54,9 +34,10 @@ class GameCubit extends Cubit<GameState> {
           if (rounds[i + 1].isStrike) {
             newRounds[i].additionalPoints =
                 rounds[i + 1].firstShot + rounds[i + 2].firstShot;
+            print('additonal points: ${newRounds[i].additionalPoints}');
           } else {
             newRounds[i].additionalPoints =
-                rounds[i + 1].firstShot + rounds[i + 2].secondShot!;
+                rounds[i + 1].firstShot + rounds[i + 1].secondShot!;
           }
         }
         if (rounds[i].isSpare) {
@@ -66,10 +47,11 @@ class GameCubit extends Cubit<GameState> {
       if (i == 8) {
         if (rounds[i].isStrike) {
           if (rounds[i + 1].isStrike) {
-            newRounds[i].additionalPoints = rounds[i + 1].firstShot;
+            newRounds[i].additionalPoints =
+                rounds[i + 1].firstShot + rounds[i + 1].secondShot!;
           } else {
             newRounds[i].additionalPoints =
-                rounds[i + 1].firstShot + rounds[i + 2].secondShot!;
+                rounds[i + 1].firstShot + rounds[i + 1].secondShot!;
           }
         }
         if (rounds[i].isSpare) {

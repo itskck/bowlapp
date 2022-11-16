@@ -17,9 +17,13 @@ class _MainScreenState extends State<MainScreen> {
 
   final TextEditingController playerOne2 = TextEditingController(text: '0');
 
+  final TextEditingController playerOne3 = TextEditingController(text: '0');
+
   final TextEditingController playerTwo1 = TextEditingController(text: '0');
 
   final TextEditingController playerTwo2 = TextEditingController(text: '0');
+
+  final TextEditingController playerTwo3 = TextEditingController(text: '0');
 
   late final GameCubit cubit1;
   late final GameCubit cubit2;
@@ -65,13 +69,25 @@ class _MainScreenState extends State<MainScreen> {
                             playerOne1.text.isNotEmpty),
                       ),
                     ),
+                    if (state1.currentRound == 9)
+                      Flexible(
+                        child: TextField(
+                          controller: playerOne3,
+                          maxLength: 2,
+                          enabled: (!(int.parse(playerOne1.text) +
+                                      int.parse(playerOne2.text) ==
+                                  10) &&
+                              playerOne1.text.isNotEmpty),
+                        ),
+                      ),
                     ElevatedButton(
                       onPressed: () => setState(() {
                         addPlayerPoints(
-                          cubit1,
-                          playerOne1.text,
-                          playerOne2.text,
-                        );
+                            cubit1,
+                            playerOne1.text,
+                            playerOne2.text,
+                            playerOne3.text,
+                            state1.currentRound == 9);
                       }),
                       child: const Text('Add player 1 points'),
                     )
@@ -84,7 +100,7 @@ class _MainScreenState extends State<MainScreen> {
             if (state2.currentRound < 10)
               SizedBox(
                 height: 50,
-                width: 300,
+                width: 400,
                 child: Row(
                   children: [
                     Flexible(
@@ -99,12 +115,25 @@ class _MainScreenState extends State<MainScreen> {
                         maxLength: 2,
                       ),
                     ),
+                    if (state2.currentRound == 9)
+                      Flexible(
+                        child: TextField(
+                          controller: playerTwo3,
+                          maxLength: 2,
+                          enabled: (!(int.parse(playerTwo1.text) +
+                                      int.parse(playerTwo2.text) ==
+                                  10) &&
+                              playerTwo1.text.isNotEmpty),
+                        ),
+                      ),
                     ElevatedButton(
                       onPressed: () => setState(() {
                         addPlayerPoints(
                           cubit2,
                           playerTwo1.text,
                           playerTwo2.text,
+                          playerTwo3.text,
+                          state2.currentRound == 9,
                         );
                       }),
                       child: const Text('Add player 2 points'),
