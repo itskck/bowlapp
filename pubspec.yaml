@@ -41,6 +41,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   fluttertoast: ^8.1.1
   win_toast: ^0.1.1
+  test: ^1.21.4
 
 dev_dependencies:
   flutter_test:

@@ -52,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
             if (state1.currentRound < 10)
               SizedBox(
                 height: 50,
-                width: 300,
+                width: 400,
                 child: Row(
                   children: [
                     Flexible(
@@ -65,8 +65,6 @@ class _MainScreenState extends State<MainScreen> {
                       child: TextField(
                         controller: playerOne2,
                         maxLength: 2,
-                        enabled: (!(int.parse(playerOne1.text) == 10) &&
-                            playerOne1.text.isNotEmpty),
                       ),
                     ),
                     if (state1.currentRound == 9)
@@ -74,10 +72,6 @@ class _MainScreenState extends State<MainScreen> {
                         child: TextField(
                           controller: playerOne3,
                           maxLength: 2,
-                          enabled: (!(int.parse(playerOne1.text) +
-                                      int.parse(playerOne2.text) ==
-                                  10) &&
-                              playerOne1.text.isNotEmpty),
                         ),
                       ),
                     ElevatedButton(
@@ -120,10 +114,6 @@ class _MainScreenState extends State<MainScreen> {
                         child: TextField(
                           controller: playerTwo3,
                           maxLength: 2,
-                          enabled: (!(int.parse(playerTwo1.text) +
-                                      int.parse(playerTwo2.text) ==
-                                  10) &&
-                              playerTwo1.text.isNotEmpty),
                         ),
                       ),
                     ElevatedButton(
